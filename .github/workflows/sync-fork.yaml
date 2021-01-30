@@ -23,6 +23,7 @@ jobs:
       run: date
 
   build_docs:
+    name: Build Elm docset
     needs: sync_with_upstream
     runs-on: ubuntu-latest
     container:
@@ -45,13 +46,22 @@ jobs:
   create_branch:
     needs: build_docs
     runs-on: ubuntu-latest
-    name: Sync master with latest upstream
+    name: Create new branch
 
     steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: my-artifact
-    
-    - name: Display structure of downloaded files
-      run: ls -R
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Count packages
+        run: 'curl https://package.elm-lang.org/search.json -H "Accept: application/json" --compressed | jq ". | length" > packages_count.txt && PKG_COUNT=$(less packages_count.txt)'
+
+      - name: Save date time
+        run: DATE=${date +'%Y-&m-%d}'
+
+      - name: Print variables
+        run: echo $PKG_COUNT && echo $DATE
