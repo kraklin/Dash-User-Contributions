@@ -15,9 +15,9 @@ jobs:
       id: sync
       uses: aormsby/Fork-Sync-With-Upstream-action@v2.2
       with:
-        upstream_repository: Kapeli/Dash-User-Contributions
-        upstream_branch: master
-        target_branch: docs
+        upstream_repository: 'Kapeli/Dash-User-Contributions'
+        upstream_branch: 'master'
+        target_branch: 'docs'
 
     - name: Timestamp
       run: date
