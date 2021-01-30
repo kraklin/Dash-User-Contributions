@@ -48,6 +48,7 @@ jobs:
     steps:
     - name: Checkout master
       uses: actions/download-artifact@v2
+      with:
         name: my-artifact
     
     - name: Display structure of downloaded files
