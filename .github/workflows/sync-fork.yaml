@@ -1,0 +1,24 @@
+on: workflow_dispatch
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync master with latest upstream
+
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@v2
+      with:
+        ref: master
+
+    - name: Pull upstream changes
+      id: sync
+      uses: aormsby/Fork-Sync-With-Upstream-action@v1
+      with:
+        upstream_repository: Kapeli/Dash-User-Contributions
+        upstream_branch: master
+        target_branch: docs
+        git_pull_args: '-s recursive -Xtheirs'
+
+    - name: Timestamp
+      run: date
