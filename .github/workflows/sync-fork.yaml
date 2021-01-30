@@ -27,6 +27,5 @@ jobs:
     container:
       image: kraklin/elm-docset:1.1.0
     steps:
-      - run: 'ls -la /usr/src/app'
-      - run: 'cd /usr/src/app'
-      - run: 'echo $PWD && ls -la'
+      - name: Generate elm packages docs
+        run: 'cd /usr/src/app && python generate.py'
