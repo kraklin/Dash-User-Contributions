@@ -9,7 +9,7 @@ jobs:
     - name: Checkout master
       uses: actions/checkout@v2
       with:
-        ref: master
+        ref: docs
 
     - name: Pull upstream changes
       id: sync
