@@ -26,4 +26,4 @@ jobs:
     runs-on: ubuntu-latest
     container: kraklin/elm-docset:1.1.0
     steps:
-      - run: 'python generate.py'
+      - run: 'echo $PWD && ls -la'
