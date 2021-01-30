@@ -17,6 +17,8 @@ jobs:
       with:
         upstream_repository: Kapeli/Dash-User-Contributions
         upstream_branch: master
+        target_branch: master
+        git_pull_args: '-s recursive -Xtheirs'
 
     - name: Timestamp
       run: date
