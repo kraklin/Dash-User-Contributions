@@ -23,9 +23,32 @@ jobs:
       run: date
 
   build_docs:
+    needs: sync_with_upstream
     runs-on: ubuntu-latest
     container:
       image: kraklin/elm-docset:1.1.0
+
     steps:
       - name: Generate elm packages docs
-        run: 'cd /usr/src/app && python generate.py'
+      #  run: 'cd /usr/src/app && python generate.py'
+        run: 'cd /usr/src/app && echo "test" > Elm.docset'
+
+      - name: Pack it
+        run: 'cd /usr/src/app && ./pack.sh'- 
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: /usr/src/app/Elm.tgz
+
+  create_branch:
+    needs: build_docs
+    runs-on: ubuntu-latest
+    name: Sync master with latest upstream
+
+    steps:
+    - name: Checkout master
+      uses: actions/download-artifact@v2
+        name: my-artifact
+    
+    - name: Display structure of downloaded files
+      run: ls -R
