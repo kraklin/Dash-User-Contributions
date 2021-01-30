@@ -21,3 +21,9 @@ jobs:
 
     - name: Timestamp
       run: date
+
+  build_docs:
+    runs-on: ubuntu-latest
+    container: kraklin/elm-docset:latest
+    steps:
+      - run: 'ls -la'
