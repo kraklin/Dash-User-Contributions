@@ -35,6 +35,8 @@ jobs:
 
       - name: Pack it
         run: 'cd /usr/src/app && ./pack.sh' 
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: my-artifact
@@ -46,7 +48,7 @@ jobs:
     name: Sync master with latest upstream
 
     steps:
-    - name: Checkout master
+    - name: Download artifact
       uses: actions/download-artifact@v2
       with:
         name: my-artifact
