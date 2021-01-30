@@ -24,7 +24,8 @@ jobs:
 
   build_docs:
     runs-on: ubuntu-latest
-    container: kraklin/elm-docset:1.1.0
+    container:
+      image: kraklin/elm-docset:1.1.0
     steps:
       - run: 'ls -la /usr/src/app'
       - run: 'cd /usr/src/app'
