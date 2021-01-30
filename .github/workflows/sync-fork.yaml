@@ -61,7 +61,7 @@ jobs:
         run: 'curl https://package.elm-lang.org/search.json -H "Accept: application/json" --compressed | jq ". | length" > packages_count.txt && PKG_COUNT=$(less packages_count.txt)'
 
       - name: Save date time
-        run: DATE=${date +'%Y-&m-%d}'
+        run: DATE=$(date +'%Y-&m-%d)'
 
       - name: Print variables
         run: echo $PKG_COUNT && echo $DATE
