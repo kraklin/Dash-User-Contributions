@@ -52,10 +52,19 @@ jobs:
     name: Create new branch
 
     steps:
+      - name: Checkout docs
+        uses: actions/checkout@v2
+        with:
+          ref: docs
+
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: dist
+          path: docsets/Elm
+
+      - name: Remove Elm.tgz.txt
+        run: rm docsets/Elm/Elm.tgz.txt
       
       - name: Display structure of downloaded files
-        run: ls -R
+        run: ls -R docsets/Elm/
