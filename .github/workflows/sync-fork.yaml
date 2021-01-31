@@ -70,15 +70,13 @@ jobs:
         run: ls -R docsets/Elm/
 
       - name: Set the value
-        run: |
-            echo "DATE=$(date --rfc-3339=date)" >> $GITHUB_ENV
+        run: echo "TODAY_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Use the value
-        run: |
-            echo "${{ env.date }}"
+        run: echo "${{ env.today_date }}"
 
       - name: Push to new branch
         uses: Automattic/action-commit-to-branch@master
         with:
-          branch: 'version/${{ env.date }}'
-          commit_message: 'New packages from ${{ env.date }}'
+          branch: 'version/${{ env.today_date }}'
+          commit_message: 'New packages from ${{ env.today_date }}'
