@@ -27,7 +27,7 @@ jobs:
     needs: sync_with_upstream
     runs-on: ubuntu-latest
     container:
-      image: kraklin/elm-docset:1.1.1
+      image: kraklin/elm-docset:1.1.2
 
     steps:
       - name: Generate elm packages docs
