@@ -27,7 +27,7 @@ jobs:
     needs: sync_with_upstream
     runs-on: ubuntu-latest
     container:
-      image: kraklin/elm-docset:1.1.0
+      image: kraklin/elm-docset:1.1.1
 
     steps:
       - name: Generate elm packages docs
@@ -37,11 +37,14 @@ jobs:
       - name: Pack it
         run: 'cd /usr/src/app && ./pack.sh' 
 
+      - name: Prepare readme and docset
+        run: 'cd /usr/src/app && ./build.sh' 
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: /usr/src/app/Elm.tgz
+          name: dist
+          path: /usr/src/app/doc-dist
 
   create_branch:
     needs: build_docs
@@ -52,16 +55,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: my-artifact
+          name: dist
       
       - name: Display structure of downloaded files
         run: ls -R
-
-      - name: Count packages
-        run: 'curl https://package.elm-lang.org/search.json -H "Accept: application/json" --compressed | jq ". | length" > packages_count.txt && PKG_COUNT=$(less packages_count.txt)'
-
-      - name: Save date time
-        run: DATE=$(date +'%Y-&m-%d')
-
-      - name: Print variables
-        run: echo $PKG_COUNT && echo $DATE
