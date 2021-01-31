@@ -27,12 +27,11 @@ jobs:
     needs: sync_with_upstream
     runs-on: ubuntu-latest
     container:
-      image: kraklin/elm-docset:1.1.5
+      image: kraklin/elm-docset:1.1.6
 
     steps:
       - name: Generate elm packages docs
-      #  run: 'cd /usr/src/app && python generate.py'
-        run: 'cd /usr/src/app && echo "test" > Elm.docset'
+        run: 'cd /usr/src/app && python generate.py'
 
       - name: Pack it
         run: 'cd /usr/src/app && ./pack.sh' 
@@ -52,15 +51,6 @@ jobs:
     name: Create new branch
 
     steps:
-      - name: Set the value
-        id: step_one
-        run: |
-            echo "action_state=yellow" >> $GITHUB_ENV
-      - name: Use the value
-        id: step_two
-        run: |
-            echo "${{ env.action_state }}" # This will output 'yellow'
-
       - name: Checkout docs
         uses: actions/checkout@v2
         with:
@@ -78,14 +68,11 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R docsets/Elm/
 
-      - name: Set the value
+      - name: Set the date env value
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-
-      - name: Use the value
-        run: echo "${{ env.date }}"
 
       - name: Push to new branch
         uses: Automattic/action-commit-to-branch@master
         with:
           branch: 'version/${{ env.date }}'
-          commit_message: 'New packages from ${{ env.date }}'
+          commit_message: 'New Elm packages from ${{ env.date }}'
