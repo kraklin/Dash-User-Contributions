@@ -52,6 +52,15 @@ jobs:
     name: Create new branch
 
     steps:
+      - name: Set the value
+        id: step_one
+        run: |
+            echo "action_state=yellow" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+            echo "${{ env.action_state }}" # This will output 'yellow'
+
       - name: Checkout docs
         uses: actions/checkout@v2
         with:
@@ -70,13 +79,13 @@ jobs:
         run: ls -R docsets/Elm/
 
       - name: Set the value
-        run: echo "TODAY_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Use the value
-        run: echo "${{ env.today_date }}"
+        run: echo "${{ env.date }}"
 
       - name: Push to new branch
         uses: Automattic/action-commit-to-branch@master
         with:
-          branch: 'version/${{ env.today_date }}'
-          commit_message: 'New packages from ${{ env.today_date }}'
+          branch: 'version/${{ env.date }}'
+          commit_message: 'New packages from ${{ env.date }}'
