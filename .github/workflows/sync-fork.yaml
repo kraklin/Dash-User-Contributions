@@ -68,3 +68,9 @@ jobs:
       
       - name: Display structure of downloaded files
         run: ls -R docsets/Elm/
+
+      - name: Push to new branch
+        uses: Automattic/action-commit-to-branch@master
+        with:
+          branch: 'test'
+          commit_message: 'Build test'
