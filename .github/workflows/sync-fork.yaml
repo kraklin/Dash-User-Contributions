@@ -27,7 +27,7 @@ jobs:
     needs: sync_with_upstream
     runs-on: ubuntu-latest
     container:
-      image: kraklin/elm-docset:1.1.4
+      image: kraklin/elm-docset:1.1.5
 
     steps:
       - name: Generate elm packages docs
@@ -69,8 +69,16 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R docsets/Elm/
 
+      - name: Set the value
+        run: |
+            echo "DATE=$(date --rfc-3339=date)" >> $GITHUB_ENV
+
+      - name: Use the value
+        run: |
+            echo "${{ env.date }}"
+
       - name: Push to new branch
         uses: Automattic/action-commit-to-branch@master
         with:
-          branch: 'test'
-          commit_message: 'Build test'
+          branch: 'version/${{ env.date }}'
+          commit_message: 'New packages from ${{ env.date }}'
