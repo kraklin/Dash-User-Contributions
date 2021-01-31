@@ -1,1 +1,0 @@
-See https://github.com/genotrance/nim-docset for details on how to generate the documentation.

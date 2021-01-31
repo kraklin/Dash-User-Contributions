@@ -1,9 +1,0 @@
-{
-    "name": "Nim",
-    "version": "1.4.2",
-    "archive": "Nim.tgz",
-    "author": {
-        "name": "cpbotha using genotrance's scripts",
-        "link": "https://github.com/genotrance/nim-docset"
-    }
-}
