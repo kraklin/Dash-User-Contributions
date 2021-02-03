@@ -1,4 +1,8 @@
-on: workflow_dispatch
+name: Prepare new update for Elm Dash docset
+
+on: 
+  schedule:
+    - cron: '0 4 4 * *'  # every 4th of the month at 4am
 
 jobs:
   sync_with_upstream:
