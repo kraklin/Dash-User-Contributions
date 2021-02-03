@@ -1,6 +1,8 @@
 Elm packages docset for Dash 
 ============================
 
+![.github/workflows/prepare-packages.yaml](https://github.com/kraklin/Dash-User-Contributions/workflows/.github/workflows/prepare-packages.yaml/badge.svg?branch=master&event=workflow_dispatch)
+
 This repository is the base for updating the [Elm packages](https://packages.elm-lang.org) docset for [Dash](https://kapeli.com/dash) and [Zeal](https://zealdocs.org/)
 
 ### Repository structure
