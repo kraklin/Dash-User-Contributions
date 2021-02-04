@@ -18,7 +18,7 @@ jobs:
 
     - name: Pull upstream changes
       id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v2.2
+      uses: aormsby/Fork-Sync-With-Upstream-action@v2.3
       with:
         upstream_repository: 'Kapeli/Dash-User-Contributions'
         upstream_branch: 'master'
