@@ -3,7 +3,7 @@ name: Prepare new update for Elm Dash docset
 on: 
   workflow_dispatch:
   schedule:
-    - cron: '0 4 4 * *'  # every 4th of the month at 4am
+    - cron: '26 4 4,18 * *'  # every 4th and 18th of the month at 4:26am
 
 jobs:
   sync_with_upstream:
