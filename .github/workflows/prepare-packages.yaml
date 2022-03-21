@@ -24,7 +24,6 @@ jobs:
         upstream_sync_branch: 'master'
         target_sync_branch: 'docs'
         target_repo_token: ${{ secrets.WORKFLOW_TOKEN }}
-        test_mode: true
 
     - name: Timestamp
       run: date
