@@ -18,13 +18,13 @@ jobs:
 
     - name: Pull upstream changes
       id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v3.2
+      uses: aormsby/Fork-Sync-With-Upstream-action@v2.4
       with:
-        upstream_sync_repo: 'Kapeli/Dash-User-Contributions'
-        upstream_sync_branch: 'master'
-        target_sync_branch: 'docs'
+        upstream_repository: 'Kapeli/Dash-User-Contributions'
+        upstream_branch: 'master'
+        target_branch: 'docs'
         target_repo_token: ${{ secrets.WORKFLOW_TOKEN }}
-
+          
     - name: Timestamp
       run: date
 
